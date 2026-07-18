@@ -41,6 +41,8 @@
     casks = [
       "wezterm"
       "claude-code"
+      "corretto@17"
+      "corretto@11"
     ];
   };
 
