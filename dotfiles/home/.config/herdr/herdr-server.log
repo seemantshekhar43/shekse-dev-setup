@@ -275,3 +275,7 @@
 2026-07-18T16:40:01.513940Z  INFO herdr::server::headless: client detach requested via keybind client_id=18
 2026-07-18T16:40:01.516214Z  INFO herdr::server::headless: client disconnected client_id=18
 2026-07-18T16:40:09.286801Z  INFO herdr::server::headless: client connected client_id=20 cols=181 rows=38 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-18T16:40:24.976370Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w3" tab_id="w3:t1"
+2026-07-18T16:40:29.980437Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/shekhar/.config/herdr/session.json workspaces=1
+2026-07-18T16:41:44.878281Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w3" tab_id="w3:t1"
+2026-07-18T16:41:49.888848Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/shekhar/.config/herdr/session.json workspaces=1

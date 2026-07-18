@@ -38,6 +38,7 @@
       "herdr"
       "opencode"
       "python@3.13"
+      "node"
     ];
     casks = [
       "wezterm"
