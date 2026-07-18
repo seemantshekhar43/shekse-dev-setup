@@ -22,6 +22,10 @@ in
   fonts.fontconfig.enable = true;
   home.sessionVariables.EDITOR = "nvim";
   home.sessionVariables.JAVA_HOME = "/Library/Java/JavaVirtualMachines/amazon-corretto-17.jdk/Contents/Home";
+  # Homebrew's python@3.13 is keg-only; its `python`/`python3` symlinks live
+  # here rather than /opt/homebrew/bin, so put this first in PATH to shadow
+  # the macOS system python3 at /usr/bin.
+  home.sessionPath = [ "/opt/homebrew/opt/python@3.13/libexec/bin" ];
 
 
   programs.zsh = {

@@ -37,6 +37,7 @@
     brews = [
       "herdr"
       "opencode"
+      "python@3.13"
     ];
     casks = [
       "wezterm"
