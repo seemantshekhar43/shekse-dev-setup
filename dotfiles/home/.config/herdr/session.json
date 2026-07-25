@@ -4,10 +4,10 @@
     {
       "id": "w3",
       "custom_name": null,
-      "identity_cwd": "/Users/shekhar/Documents/temp/scratchpad",
+      "identity_cwd": "/Users/shekhar/Documents/temp/scratchpad/code-java",
       "public_pane_numbers": {
-        "8": 2,
-        "11": 5
+        "2": 5,
+        "1": 2
       },
       "next_public_pane_number": 8,
       "public_tab_numbers": [
@@ -22,24 +22,24 @@
               "direction": "Horizontal",
               "ratio": 0.5,
               "first": {
-                "Pane": 8
+                "Pane": 1
               },
               "second": {
-                "Pane": 11
+                "Pane": 2
               }
             }
           },
           "panes": {
-            "8": {
-              "cwd": "/Users/shekhar/Documents/temp/scratchpad"
+            "1": {
+              "cwd": "/Users/shekhar/Documents/temp/scratchpad/code-java"
             },
-            "11": {
-              "cwd": "/Users/shekhar/Documents/projects/shekse-dev-setup/dotfiles"
+            "2": {
+              "cwd": "/Users/shekhar/Documents/temp/scratchpad/enginebogie/raw"
             }
           },
           "zoomed": false,
-          "focused": 11,
-          "root_pane": 8
+          "focused": 1,
+          "root_pane": 1
         }
       ],
       "active_tab": 0
