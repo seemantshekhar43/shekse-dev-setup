@@ -39,6 +39,7 @@
       "opencode"
       "python@3.13"
       "node"
+      "gh"
     ];
     casks = [
       "wezterm"

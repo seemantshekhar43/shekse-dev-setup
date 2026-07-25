@@ -25,7 +25,10 @@ in
   # Homebrew's python@3.13 is keg-only; its `python`/`python3` symlinks live
   # here rather than /opt/homebrew/bin, so put this first in PATH to shadow
   # the macOS system python3 at /usr/bin.
-  home.sessionPath = [ "/opt/homebrew/opt/python@3.13/libexec/bin" ];
+  home.sessionPath = [
+    "/opt/homebrew/opt/python@3.13/libexec/bin"
+    "$HOME/.local/bin"
+  ];
 
 
   programs.zsh = {
