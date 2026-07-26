@@ -41,6 +41,8 @@
       "node"
       "gh"
       "docker"  # Docker CLI (client only, not Docker Desktop)
+      "docker-compose"  # `docker compose` plugin
+      "colima"  # Docker engine (Linux VM running dockerd) for the CLI
       "container"  # Apple's native container CLI (github.com/apple/container)
     ];
     casks = [
