@@ -13,3 +13,6 @@ result-*
 
 # Claude Code local/private state
 .claude/
+
+# Local-only Claude settings (machine-specific; skills are still tracked)
+dotfiles/home/.claude/settings.json
