@@ -40,6 +40,8 @@
       "python@3.13"
       "node"
       "gh"
+      "docker"  # Docker CLI (client only, not Docker Desktop)
+      "container"  # Apple's native container CLI (github.com/apple/container)
     ];
     casks = [
       "wezterm"
