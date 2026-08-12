@@ -39,7 +39,6 @@
       "opencode"
       "python@3.13"
       "node"
-      "bun"
       "gh"
       "docker"  # Docker CLI (client only, not Docker Desktop)
       "docker-compose"  # `docker compose` plugin

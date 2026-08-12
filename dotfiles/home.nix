@@ -16,6 +16,7 @@ in
     jq        # json on the command line
     lazygit
     neovim
+    bun       # JS runtime/package manager (homebrew's bottle install fails under nix-homebrew's patched brew)
     # the font everything renders in
     nerd-fonts.hack
   ];
