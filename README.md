@@ -11,6 +11,7 @@ dotfiles/
 ├── flake.nix          # entry point: wires nix-darwin + home-manager + nix-homebrew together
 ├── configuration.nix  # system-level config (macOS defaults, Homebrew packages/casks)
 ├── home.nix           # user-level config (CLI tools, zsh, starship, dotfile symlinks)
+├── bootstrap.sh        # first-time setup: fixes the username in flake.nix, then calls rebuild.sh
 ├── rebuild.sh          # applies the config to the machine
 ├── AGENTS.md           # notes for coding agents working in this repo
 └── home/               # actual dotfiles, symlinked into place by home.nix
@@ -66,13 +67,14 @@ Running `rebuild.sh` will:
    git clone <this-repo-url> ~/shekse-dev-setup
    cd ~/shekse-dev-setup
    ```
-2. Open `dotfiles/flake.nix` and change the `user = "shekhar";` line to your own macOS username.
-3. Run:
+2. Run:
    ```sh
-   ./dotfiles/rebuild.sh
+   ./dotfiles/bootstrap.sh
    ```
-   This symlinks the repo to `~/.dotfiles` and runs `sudo nix run nix-darwin -- switch --flake ~/.dotfiles#mac`, which builds and activates the whole configuration. You'll be prompted for your password (for `sudo`) and Nix will download and build everything it needs - the first run can take a while.
-4. Restart your terminal (or open a new WezTerm window) so the new shell config takes effect.
+   This checks whether `dotfiles/flake.nix`'s hardcoded `user = "shekhar";` matches your macOS username; if not, it offers to rewrite it for you. It then hands off to `rebuild.sh`, which symlinks the repo to `~/.dotfiles` and runs `sudo nix run nix-darwin -- switch --flake ~/.dotfiles#mac`, building and activating the whole configuration. You'll be prompted for your password (for `sudo`) and Nix will download and build everything it needs - the first run can take a while.
+3. Restart your terminal (or open a new WezTerm window) so the new shell config takes effect.
+
+   On any later machine or re-clone, you can skip straight to `./dotfiles/rebuild.sh` once `flake.nix` already has the right username.
 
 ## Making changes
 
