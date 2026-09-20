@@ -21,6 +21,10 @@ in
     nerd-fonts.hack
   ];
   fonts.fontconfig.enable = true;
+  # Vercel CLI has no Homebrew formula, so install it via npm (node comes from the brews list).
+  home.activation.installVercelCli = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+    $DRY_RUN_CMD /opt/homebrew/bin/npm install -g vercel
+  '';
   home.sessionVariables.EDITOR = "nvim";
   home.sessionVariables.JAVA_HOME = "/Library/Java/JavaVirtualMachines/amazon-corretto-17.jdk/Contents/Home";
   # Homebrew's python@3.13 is keg-only; its `python`/`python3` symlinks live
