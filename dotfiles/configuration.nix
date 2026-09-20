@@ -36,6 +36,7 @@
     onActivation.extraFlags = [ "--force" ];
     brews = [
       "git"
+      "gitleaks"
       "herdr"
       "opencode"
       "python@3.13"
