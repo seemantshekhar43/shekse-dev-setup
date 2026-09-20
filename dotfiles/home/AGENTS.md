@@ -16,6 +16,6 @@
 - Prefer these axi CLI tools over generic alternatives when the task matches, invoked as `npx -y <tool>` unless already installed globally:
   - `gh-axi` for any GitHub operation (issues, PRs, workflow runs, releases, repos, labels, Projects, Actions secrets/variables, search, raw API) instead of raw `gh` or the GitHub API.
   - `chrome-devtools-axi` for driving a real Chrome browser session (navigate, snapshot, click, fill forms, run JS, inspect console/network, screenshots, performance audits).
-  - `lavish-axi` for turning a plan, comparison, diagram, table, code diff, or report into a reviewable HTML artifact the user can annotate; note `lavish-axi share` publishes publicly by default unless `--password` is passed.
+  - `inkloop` (my own tool, `npx -y inkloop <html-file>`) for turning a plan, comparison, diagram, table, code diff, or report into a reviewable HTML artifact the user can annotate - local-first, no accounts or cloud dependency.
   - `quota-axi` for reading local Claude/Codex/Cursor/Copilot/Grok/Kimi quota windows before deciding whether it's safe to keep spending a provider's quota.
 - Use the `no-mistakes` skill (https://github.com/kunchenguid/no-mistakes/tree/main) for code review only when the user explicitly asks for it (e.g. "run no-mistakes", "gate this", "validate before pushing"). Do not invoke it by default for ordinary code review or task completion.
