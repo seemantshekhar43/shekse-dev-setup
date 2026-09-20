@@ -35,6 +35,7 @@
     onActivation.autoUpdate = true;
     onActivation.extraFlags = [ "--force" ];
     brews = [
+      "git"
       "herdr"
       "opencode"
       "python@3.13"
