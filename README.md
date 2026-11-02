@@ -44,6 +44,7 @@ Running `rebuild.sh` will:
      - `~/.config/herdr` → `dotfiles/home/.config/herdr`
      - `~/.claude/settings.json` → `dotfiles/home/.claude/settings.json`
      - `~/.claude/skills` → `dotfiles/home/.claude/skills`
+     - `~/.claude/skills/shekse-finance-skill` → clone of the private `shekse-finance-skill` repo at `~/.local/share/shekse-finance-skill` (cloned or fast-forward updated on every rebuild by an activation hook; skipped with a warning if ssh access is missing)
      - `~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md`, `~/.config/opencode/AGENTS.md` → `dotfiles/home/AGENTS.md`
    - Environment: `$EDITOR=nvim`, `$JAVA_HOME` set to the Corretto 17 JDK, `python`/`python3` from Homebrew's `python@3.13` and `~/.local/bin` put first on `$PATH`.
 

@@ -25,6 +25,23 @@ in
   home.activation.installVercelCli = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     $DRY_RUN_CMD /opt/homebrew/bin/npm install -g vercel
   '';
+  # shekse-finance-skill (private repo): clone/update it, then link it into the tracked skills dir
+  # so ~/.claude/skills/shekse-finance-skill/{SKILL.md,bin/sfin} resolve. Never fails the rebuild
+  # (e.g. no ssh access yet on a fresh machine); the link is gitignored.
+  home.activation.installShekseFinanceSkill = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+    dir="$HOME/.local/share/shekse-finance-skill"
+    git=/opt/homebrew/bin/git
+    if [ -d "$dir/.git" ]; then
+      $DRY_RUN_CMD $git -C "$dir" pull --ff-only || echo "warning: could not update shekse-finance-skill"
+    else
+      $DRY_RUN_CMD mkdir -p "$(dirname "$dir")"
+      $DRY_RUN_CMD $git clone git@github.com:seemantshekhar43/shekse-finance-skill.git "$dir" \
+        || echo "warning: could not clone shekse-finance-skill (needs ssh access to the private repo)"
+    fi
+    if [ -d "$dir" ]; then
+      $DRY_RUN_CMD ln -sfn "$dir" "${dotfiles}/home/.claude/skills/shekse-finance-skill"
+    fi
+  '';
   home.sessionVariables.EDITOR = "nvim";
   home.sessionVariables.JAVA_HOME = "/Library/Java/JavaVirtualMachines/amazon-corretto-17.jdk/Contents/Home";
   # Homebrew's python@3.13 is keg-only; its `python`/`python3` symlinks live

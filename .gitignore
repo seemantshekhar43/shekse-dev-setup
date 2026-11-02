@@ -16,3 +16,6 @@ result-*
 
 # Local-only Claude settings (machine-specific; skills are still tracked)
 dotfiles/home/.claude/settings.json
+
+# Link to the shekse-finance-skill clone, created by the home.nix activation hook
+dotfiles/home/.claude/skills/shekse-finance-skill
