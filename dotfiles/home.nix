@@ -25,6 +25,11 @@ in
   home.activation.installVercelCli = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     $DRY_RUN_CMD /opt/homebrew/bin/npm install -g vercel
   '';
+  # Paperclip (local project tracker) has no Homebrew formula either. Its data lives in ~/.paperclip
+  # and survives reinstalls; run `paperclipai run` to start it at http://127.0.0.1:3100.
+  home.activation.installPaperclip = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+    $DRY_RUN_CMD /opt/homebrew/bin/npm install -g paperclipai
+  '';
   # shekse-finance-skill (private repo): clone/update it, then link it into the tracked skills dir
   # so ~/.claude/skills/shekse-finance-skill/{SKILL.md,bin/sfin} resolve. Never fails the rebuild
   # (e.g. no ssh access yet on a fresh machine); the link is gitignored.
@@ -43,6 +48,7 @@ in
     fi
   '';
   home.sessionVariables.EDITOR = "nvim";
+  home.sessionVariables.PAPERCLIP_TELEMETRY_DISABLED = "1";
   home.sessionVariables.JAVA_HOME = "/Library/Java/JavaVirtualMachines/amazon-corretto-17.jdk/Contents/Home";
   # Homebrew's python@3.13 is keg-only; its `python`/`python3` symlinks live
   # here rather than /opt/homebrew/bin, so put this first in PATH to shadow
