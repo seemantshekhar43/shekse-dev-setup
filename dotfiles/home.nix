@@ -30,6 +30,11 @@ in
   home.activation.installPaperclip = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     $DRY_RUN_CMD /opt/homebrew/bin/npm install -g paperclipai
   '';
+  # agent-desktop (drives native desktop apps via the OS accessibility tree) has no Homebrew formula.
+  # Its skills are embedded in the binary; see skills/agent-desktop for the bootstrap skill.
+  home.activation.installAgentDesktop = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+    $DRY_RUN_CMD /opt/homebrew/bin/npm install -g agent-desktop
+  '';
   # shekse-finance-skill (private repo): clone/update it, then link it into the tracked skills dir
   # so ~/.claude/skills/shekse-finance-skill/{SKILL.md,bin/sfin} resolve. Never fails the rebuild
   # (e.g. no ssh access yet on a fresh machine); the link is gitignored.
