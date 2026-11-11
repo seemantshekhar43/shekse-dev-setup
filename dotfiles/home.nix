@@ -43,6 +43,19 @@ in
     $DRY_RUN_CMD /opt/homebrew/bin/rea setup --client claude_code --client codex --yes \
       || echo "warning: rea setup failed"
   '';
+  # REA's Android analysis needs the jadx-headless-mcp JAR, which REA does not install itself.
+  # Pinned to the version and sha256 from REA's src/android/JadxRelease.ts; re-downloaded only if
+  # missing or corrupt. Selected via REA_JADX_MCP_JAR below. Never fails the rebuild.
+  home.activation.installReaJadx = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+    jar="$HOME/.local/share/rea/android/jadx-headless-mcp-0.7.1-all.jar"
+    sha=6e5eacf500b64292bfb73c49797c1958f6ee44646e43e868039ae7feb573ff75
+    if ! echo "$sha  $jar" | /usr/bin/shasum -a 256 -c - >/dev/null 2>&1; then
+      $DRY_RUN_CMD mkdir -p "$(dirname "$jar")"
+      $DRY_RUN_CMD /usr/bin/curl -fsSL -o "$jar" https://github.com/1013503897/jadx-headless-mcp/releases/download/v0.7.1/jadx-headless-mcp-0.7.1-all.jar \
+        && echo "$sha  $jar" | /usr/bin/shasum -a 256 -c - >/dev/null \
+        || { echo "warning: could not install the jadx-headless-mcp JAR for REA"; rm -f "$jar"; }
+    fi
+  '';
   # shekse-finance-skill (private repo): clone/update it, then link it into the tracked skills dir
   # so ~/.claude/skills/shekse-finance-skill/{SKILL.md,bin/sfin} resolve. Never fails the rebuild
   # (e.g. no ssh access yet on a fresh machine); the link is gitignored.
@@ -62,6 +75,7 @@ in
   '';
   home.sessionVariables.EDITOR = "nvim";
   home.sessionVariables.PAPERCLIP_TELEMETRY_DISABLED = "1";
+  home.sessionVariables.REA_JADX_MCP_JAR = "${config.home.homeDirectory}/.local/share/rea/android/jadx-headless-mcp-0.7.1-all.jar";
   home.sessionVariables.JAVA_HOME = "/Library/Java/JavaVirtualMachines/amazon-corretto-17.jdk/Contents/Home";
   # Homebrew's python@3.13 is keg-only; its `python`/`python3` symlinks live
   # here rather than /opt/homebrew/bin, so put this first in PATH to shadow
