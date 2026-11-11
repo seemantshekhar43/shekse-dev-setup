@@ -20,4 +20,5 @@
   - `inkloop` (my own tool, `npx -y inkloop <html-file>`) for turning a plan, comparison, diagram, table, code diff, or report into a reviewable HTML artifact the user can annotate - local-first, no accounts or cloud dependency.
   - `quota-axi` for reading local Claude/Codex/Cursor/Copilot/Grok/Kimi quota windows before deciding whether it's safe to keep spending a provider's quota.
 - Use the `no-mistakes` skill (https://github.com/kunchenguid/no-mistakes/tree/main) for code review only when the user explicitly asks for it (e.g. "run no-mistakes", "gate this", "validate before pushing"). Do not invoke it by default for ordinary code review or task completion.
+- For reverse engineering native binaries, Electron/JS apps, .NET assemblies or website behavior, use the `reverse-engineer-anything` skill and the `rea` MCP server.
 - For mutual fund questions (NAV, returns, comparing funds, SIP or lumpsum backtests, risk), use the `shekse-finance-skill` skill. Run `~/.claude/skills/shekse-finance-skill/bin/sfin` instead of calling mfapi.in directly.

@@ -37,7 +37,7 @@ Running `rebuild.sh` will:
 3. Apply `home.nix` (user level, via home-manager), installing via Nix (not Homebrew):
    - CLI tools: `ripgrep`, `fd`, `fzf`, `jq`, `lazygit`, `neovim`, `bun`.
    - Fonts: Hack Nerd Font.
-   - npm global CLIs (no Homebrew formula), installed by activation hooks: `vercel`, `agent-desktop` (native desktop app automation via the accessibility tree; skills embedded in the binary, bootstrapped by `skills/agent-desktop`), `paperclipai` (local project tracker; data in `~/.paperclip`, telemetry off via `PAPERCLIP_TELEMETRY_DISABLED=1`).
+   - npm global CLIs (no Homebrew formula), installed by activation hooks: `vercel`, `agent-desktop` (native desktop app automation via the accessibility tree; skills embedded in the binary, bootstrapped by `skills/agent-desktop`), `rea-agents` (REA reverse engineering MCP server + `reverse-engineer-anything` skill; `rea setup` registers the MCP for Claude Code and Codex on every rebuild, the skill is gitignored), `paperclipai` (local project tracker; data in `~/.paperclip`, telemetry off via `PAPERCLIP_TELEMETRY_DISABLED=1`).
    - zsh with autosuggestions + syntax highlighting, and starship prompt.
    - Symlinks (edit-in-place: the real files live in this repo, home-manager only points `~/.config`/`~/.claude`/etc. at them):
      - `~/.config/wezterm` → `dotfiles/home/.config/wezterm`

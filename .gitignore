@@ -19,3 +19,6 @@ dotfiles/home/.claude/settings.json
 
 # Link to the shekse-finance-skill clone, created by the home.nix activation hook
 dotfiles/home/.claude/skills/shekse-finance-skill
+
+# Installed by `rea setup` from the home.nix activation hook
+dotfiles/home/.claude/skills/reverse-engineer-anything

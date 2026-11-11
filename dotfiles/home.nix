@@ -35,6 +35,14 @@ in
   home.activation.installAgentDesktop = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     $DRY_RUN_CMD /opt/homebrew/bin/npm install -g agent-desktop
   '';
+  # REA (reverse engineering MCP + skill) has no Homebrew formula. After installing the CLI, `rea setup`
+  # idempotently registers the MCP server in ~/.claude.json and ~/.codex/config.toml and refreshes the
+  # bundled reverse-engineer-anything skill (gitignored under skills/). Never fails the rebuild.
+  home.activation.installRea = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+    $DRY_RUN_CMD /opt/homebrew/bin/npm install -g rea-agents
+    $DRY_RUN_CMD /opt/homebrew/bin/rea setup --client claude_code --client codex --yes \
+      || echo "warning: rea setup failed"
+  '';
   # shekse-finance-skill (private repo): clone/update it, then link it into the tracked skills dir
   # so ~/.claude/skills/shekse-finance-skill/{SKILL.md,bin/sfin} resolve. Never fails the rebuild
   # (e.g. no ssh access yet on a fresh machine); the link is gitignored.
