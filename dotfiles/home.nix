@@ -91,6 +91,7 @@ in
     autosuggestion.enable = true;      # ghost text from history
     syntaxHighlighting.enable = true;  # commands turn green when valid
     initContent = ''
+      eval "$(/opt/homebrew/bin/mise activate zsh)"
       bindkey '^f' autosuggest-accept
       bindkey "^[[F" end-of-line
       bindkey "^[[H" beginning-of-line

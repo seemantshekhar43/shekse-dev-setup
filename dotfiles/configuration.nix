@@ -38,6 +38,7 @@
       "git"
       "gitleaks"
       "herdr"
+      "mise"  # polyglot runtime/tool version manager
       "opencode"
       "python@3.13"
       "node"

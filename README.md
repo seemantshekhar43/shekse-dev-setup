@@ -33,7 +33,7 @@ Running `rebuild.sh` will:
 2. Apply `configuration.nix` (system level, via nix-darwin):
    - macOS defaults: dark mode, auto-hide menu bar, auto-hide dock, Finder list view with no desktop icons, tap-to-click trackpad.
    - Homebrew casks: `wezterm`, `claude-code`, `corretto@17`, `corretto@11`.
-   - Homebrew formulas: `herdr`, `opencode`, `python@3.13`, `node`, `gh`, `docker`, `docker-compose`, `docker-buildx`, `colima`, `container`.
+   - Homebrew formulas: `herdr`, `mise`, `opencode`, `python@3.13`, `node`, `gh`, `docker`, `docker-compose`, `docker-buildx`, `colima`, `container`.
 3. Apply `home.nix` (user level, via home-manager), installing via Nix (not Homebrew):
    - CLI tools: `ripgrep`, `fd`, `fzf`, `jq`, `lazygit`, `neovim`, `bun`.
    - Fonts: Hack Nerd Font.
