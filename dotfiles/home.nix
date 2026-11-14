@@ -2,6 +2,8 @@
 
 let
   dotfiles = "${config.home.homeDirectory}/.dotfiles";
+  # Activation scripts run with a minimal PATH; npm and rea are `#!/usr/bin/env node` scripts, so node must be findable.
+  brewPath = "PATH=/opt/homebrew/bin:$PATH";
 in
 
 {
@@ -23,24 +25,24 @@ in
   fonts.fontconfig.enable = true;
   # Vercel CLI has no Homebrew formula, so install it via npm (node comes from the brews list).
   home.activation.installVercelCli = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-    $DRY_RUN_CMD /opt/homebrew/bin/npm install -g vercel
+    $DRY_RUN_CMD env ${brewPath} /opt/homebrew/bin/npm install -g vercel
   '';
   # Paperclip (local project tracker) has no Homebrew formula either. Its data lives in ~/.paperclip
   # and survives reinstalls; run `paperclipai run` to start it at http://127.0.0.1:3100.
   home.activation.installPaperclip = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-    $DRY_RUN_CMD /opt/homebrew/bin/npm install -g paperclipai
+    $DRY_RUN_CMD env ${brewPath} /opt/homebrew/bin/npm install -g paperclipai
   '';
   # agent-desktop (drives native desktop apps via the OS accessibility tree) has no Homebrew formula.
   # Its skills are embedded in the binary; see skills/agent-desktop for the bootstrap skill.
   home.activation.installAgentDesktop = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-    $DRY_RUN_CMD /opt/homebrew/bin/npm install -g agent-desktop
+    $DRY_RUN_CMD env ${brewPath} /opt/homebrew/bin/npm install -g agent-desktop
   '';
   # REA (reverse engineering MCP + skill) has no Homebrew formula. After installing the CLI, `rea setup`
   # idempotently registers the MCP server in ~/.claude.json and ~/.codex/config.toml and refreshes the
   # bundled reverse-engineer-anything skill (gitignored under skills/). Never fails the rebuild.
   home.activation.installRea = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-    $DRY_RUN_CMD /opt/homebrew/bin/npm install -g rea-agents
-    $DRY_RUN_CMD /opt/homebrew/bin/rea setup --client claude_code --client codex --yes \
+    $DRY_RUN_CMD env ${brewPath} /opt/homebrew/bin/npm install -g rea-agents
+    $DRY_RUN_CMD env ${brewPath} /opt/homebrew/bin/rea setup --client claude_code --client codex --yes \
       || echo "warning: rea setup failed"
   '';
   # REA's Android analysis needs the jadx-headless-mcp JAR, which REA does not install itself.
