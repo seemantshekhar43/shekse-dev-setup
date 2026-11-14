@@ -73,6 +73,23 @@ in
       $DRY_RUN_CMD ln -sfn "$dir" "${dotfiles}/home/.claude/skills/shekse-finance-skill"
     fi
   '';
+  # Rust (cargo, rustc, clippy, rustfmt) comes from rustup, which is not packaged the way the repo needs
+  # (FigLock pins toolchains per repo). Installed once with the official installer; --no-modify-path because
+  # PATH is declared below in home.sessionPath, and ~/.zshenv is a read-only Nix symlink anyway. Later
+  # rebuilds leave the toolchain alone (`rustup update` is the upgrade path). The cargo tools below are
+  # installed only if missing. Never fails the rebuild.
+  home.activation.installRust = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+    cargo_bin="$HOME/.cargo/bin"
+    if [ ! -x "$cargo_bin/rustup" ]; then
+      $DRY_RUN_CMD /bin/sh -c "/usr/bin/curl --proto '=https' --tlsv1.2 -fsSL https://sh.rustup.rs | /bin/sh -s -- -y --no-modify-path" \
+        || echo "warning: could not install rustup"
+    fi
+    for tool in cargo-deny cargo-fuzz; do
+      if [ -x "$cargo_bin/cargo" ] && [ ! -x "$cargo_bin/$tool" ]; then
+        $DRY_RUN_CMD "$cargo_bin/cargo" install --locked "$tool" || echo "warning: could not install $tool"
+      fi
+    done
+  '';
   home.sessionVariables.EDITOR = "nvim";
   home.sessionVariables.PAPERCLIP_TELEMETRY_DISABLED = "1";
   home.sessionVariables.REA_JADX_MCP_JAR = "${config.home.homeDirectory}/.local/share/rea/android/jadx-headless-mcp-0.7.1-all.jar";
@@ -83,6 +100,7 @@ in
   home.sessionPath = [
     "/opt/homebrew/opt/python@3.13/libexec/bin"
     "$HOME/.local/bin"
+    "$HOME/.cargo/bin"  # rustup's cargo, rustc and the cargo-installed tools
   ];
 
 

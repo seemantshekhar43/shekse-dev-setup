@@ -38,6 +38,7 @@ Running `rebuild.sh` will:
    - CLI tools: `ripgrep`, `fd`, `fzf`, `jq`, `lazygit`, `neovim`, `bun`.
    - Fonts: Hack Nerd Font.
    - npm global CLIs (no Homebrew formula), installed by activation hooks: `vercel`, `agent-desktop` (native desktop app automation via the accessibility tree; skills embedded in the binary, bootstrapped by `skills/agent-desktop`), `rea-agents` (REA reverse engineering MCP server + `reverse-engineer-anything` skill; `rea setup` registers the MCP for Claude Code and Codex on every rebuild, the skill is gitignored; the pinned `jadx-headless-mcp` JAR for Android analysis is downloaded to `~/.local/share/rea/android` with a sha256 check and exported as `$REA_JADX_MCP_JAR`), `paperclipai` (local project tracker; data in `~/.paperclip`, telemetry off via `PAPERCLIP_TELEMETRY_DISABLED=1`).
+   - Rust: `rustup` (installed once with the official installer by an activation hook, `--no-modify-path`) plus `cargo-deny` and `cargo-fuzz` (`cargo install`, only if missing). `~/.cargo/bin` is on `home.sessionPath`, so `cargo` works in every shell, including non-interactive ones and agent sessions. Upgrade the toolchain with `rustup update`.
    - zsh with autosuggestions + syntax highlighting, and starship prompt.
    - Symlinks (edit-in-place: the real files live in this repo, home-manager only points `~/.config`/`~/.claude`/etc. at them):
      - `~/.config/wezterm` → `dotfiles/home/.config/wezterm`
