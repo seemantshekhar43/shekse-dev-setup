@@ -48,6 +48,7 @@
       "docker-buildx"  # `docker buildx` plugin (multi-arch image builds)
       "colima"  # Docker engine (Linux VM running dockerd) for the CLI
       "container"  # Apple's native container CLI (github.com/apple/container)
+      "xcodegen"  # generate Xcode projects from a YAML spec
     ];
     casks = [
       "wezterm"
